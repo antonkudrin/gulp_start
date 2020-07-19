@@ -4,213 +4,214 @@ let source_folder = "#src";
 let fs = require("fs");
 
 let path = {
-  build: {
-    html: project_folder + "/",
-    css: project_folder + "/css/",
-    js: project_folder + "/js/",
-    img: project_folder + "/img/",
-    fonts: project_folder + "/fonts/",
-  },
+   build: {
+      html: project_folder + "/",
+      css: project_folder + "/css/",
+      js: project_folder + "/js/",
+      img: project_folder + "/img/",
+      fonts: project_folder + "/fonts/",
+   },
 
-  src: {
-    html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
-    css: source_folder + "/scss/style.scss",
-    js: source_folder + "/js/script.js",
-    img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
-    fonts: source_folder + "/fonts/*.ttf",
-  },
+   src: {
+      html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
+      css: source_folder + "/scss/style.scss",
+      js: source_folder + "/js/script.js",
+      img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
+      fonts: source_folder + "/fonts/*.ttf",
+   },
 
-  watch: {
-    html: source_folder + "/**/*.html",
-    css: source_folder + "/scss/**/*.scss",
-    js: source_folder + "/js/**/*.js",
-    img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
-  },
+   watch: {
+      html: source_folder + "/**/*.html",
+      css: source_folder + "/scss/**/*.scss",
+      js: source_folder + "/js/**/*.js",
+      img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
+   },
 
-  clean: "./" + project_folder + "/",
+   clean: "./" + project_folder + "/",
 };
 
 //! переменные плагины
 let { src, dest } = require("gulp"),
-  gulp = require("gulp"),
-  browsersync = require("browser-sync").create(),
-  fileinclude = require("gulp-file-include"),
-  del = require("del"),
-  scss = require("gulp-sass"),
-  autoprefixer = require("gulp-autoprefixer"),
-  group_media = require("gulp-group-css-media-queries"),
-  clean_css = require("gulp-clean-css"),
-  rename = require("gulp-rename"),
-  uglify = require("gulp-uglify-es").default,
-  imagemin = require("gulp-imagemin"),
-  webp = require("gulp-webp"),
-  webphtml = require("gulp-webp-html"),
-  webpcss = require("gulp-webp-css"),
-  ttf2woff = require("gulp-ttf2woff"),
-  ttf2woff2 = require("gulp-ttf2woff2"),
-  fonterOtf = require("gulp-fonter");
+   gulp = require("gulp"),
+   browsersync = require("browser-sync").create(),
+   fileinclude = require("gulp-file-include"),
+   del = require("del"),
+   scss = require("gulp-sass"),
+   autoprefixer = require("gulp-autoprefixer"),
+   group_media = require("gulp-group-css-media-queries"),
+   clean_css = require("gulp-clean-css"),
+   rename = require("gulp-rename"),
+   uglify = require("gulp-uglify-es").default,
+   imagemin = require("gulp-imagemin"),
+   webp = require("gulp-webp"),
+   webphtml = require("gulp-webp-html"),
+   webpcss = require("gulp-webp-css"),
+   ttf2woff = require("gulp-ttf2woff"),
+   ttf2woff2 = require("gulp-ttf2woff2"),
+   fonterOtf = require("gulp-fonter");
 
 //! подлючение сервера
 function browserSync(params) {
-  browsersync.init({
-    server: {
-      baseDir: "./" + project_folder + "/",
-    },
-    port: 3000,
-    notify: false,
-  });
+   browsersync.init({
+      server: {
+         baseDir: "./" + project_folder + "/",
+      },
+      port: 3000,
+      notify: false,
+   });
 }
 
 //! подключение плагинов шрифта конвертор из ttf в woff и woff2
 function fonts(params) {
-  src(path.src.fonts).pipe(ttf2woff()).pipe(dest(path.build.fonts));
-  return src(path.src.fonts).pipe(ttf2woff2()).pipe(dest(path.build.fonts));
+   src(path.src.fonts).pipe(ttf2woff()).pipe(dest(path.build.fonts));
+   return src(path.src.fonts).pipe(ttf2woff2()).pipe(dest(path.build.fonts));
 }
 
 //! подключение плагинов оптимизации картинок
 function images() {
-  return src(path.src.img)
-    .pipe(
-      webp({
-        quality: 70,
-      })
-    )
-    .pipe(dest(path.build.img))
-    .pipe(src(path.src.img))
-    .pipe(
-      imagemin({
-        progressive: true,
-        svgoPlugins: [{ removeViewBox: false }],
-        interlaced: true,
-        optimizationLevel: 3, // 0 to 7
-      })
-    )
-    .pipe(dest(path.build.img))
-    .pipe(browsersync.stream());
+   return src(path.src.img)
+      .pipe(
+         webp({
+            quality: 70,
+         })
+      )
+      .pipe(dest(path.build.img))
+      .pipe(src(path.src.img))
+      .pipe(
+         imagemin({
+            progressive: true,
+            svgoPlugins: [{ removeViewBox: false }],
+            interlaced: true,
+            optimizationLevel: 3, // 0 to 7
+         })
+      )
+      .pipe(dest(path.build.img))
+      .pipe(browsersync.stream());
 }
 
 //! отчещает конечную папку
 function clean(params) {
-  return del(path.clean);
+   return del(path.clean);
 }
 
 //! подключение плагинов html
 function html() {
-  return src(path.src.html)
-    .pipe(fileinclude())
-    .pipe(webphtml())
-    .pipe(dest(path.build.html))
-    .pipe(browsersync.stream());
+   return src(path.src.html)
+      .pipe(fileinclude())
+      .pipe(webphtml())
+      .pipe(dest(path.build.html))
+      .pipe(browsersync.stream());
 }
 
 //! подключение плагинов css
 function css(params) {
-  return src(path.src.css)
-    .pipe(
-      scss({
-        outputStyle: "expanded",
-      })
-    )
-    .pipe(group_media())
-    .pipe(
-      autoprefixer({
-        overrideBrowserslist: ["last 5 versions"],
-        cascade: true,
-      })
-    )
-    .pipe(webpcss())
-    .pipe(dest(path.build.css))
-    .pipe(clean_css())
-    .pipe(
-      rename({
-        extname: ".min.css",
-      })
-    )
-    .pipe(dest(path.build.css))
-    .pipe(browsersync.stream());
+   return src(path.src.css)
+      .pipe(
+         scss({
+            outputStyle: "expanded",
+         })
+      )
+      .pipe(group_media())
+      .pipe(
+         autoprefixer({
+            grid: true,
+            overrideBrowserslist: ["last 5 versions"],
+            cascade: true,
+         })
+      )
+      .pipe(webpcss())
+      .pipe(dest(path.build.css))
+      .pipe(clean_css())
+      .pipe(
+         rename({
+            extname: ".min.css",
+         })
+      )
+      .pipe(dest(path.build.css))
+      .pipe(browsersync.stream());
 }
 
 //! подключение плагинов js
 function js() {
-  return src(path.src.js)
-    .pipe(fileinclude())
-    .pipe(dest(path.build.js))
-    .pipe(uglify())
-    .pipe(
-      rename({
-        extname: ".min.js",
-      })
-    )
-    .pipe(dest(path.build.js))
-    .pipe(browsersync.stream());
+   return src(path.src.js)
+      .pipe(fileinclude())
+      .pipe(dest(path.build.js))
+      .pipe(uglify())
+      .pipe(
+         rename({
+            extname: ".min.js",
+         })
+      )
+      .pipe(dest(path.build.js))
+      .pipe(browsersync.stream());
 }
 
 //! Запуск функции в паралельном терминале " gulp otf2ttf "
 //todo  конвертирует шрифт из otf в ttf и выгружает в папку " /fonts/ "
 gulp.task("otf2ttf", function () {
-  return src([source_folder + "/fonts/*.otf"])
-    .pipe(
-      fonterOtf({
-        formats: ["ttf"],
-      })
-    )
-    .pipe(dest(source_folder + "/fonts/"));
+   return src([source_folder + "/fonts/*.otf"])
+      .pipe(
+         fonterOtf({
+            formats: ["ttf"],
+         })
+      )
+      .pipe(dest(source_folder + "/fonts/"));
 });
 
 //! Запуск функции в паралельном терминале " gulp svgSprite "
 //todo: svg Sprite единый svg файл
 gulp.task("svgSprite", function () {
-  return gulp
-    .src([source_folder + "/iconsprite/*.svg"])
-    .pipe(
-      svgSprite({
-        mode: {
-          stack: {
-            sprite: "../icons/icons.svg", // sprite file name
-            example: true,
-          },
-        },
-      })
-    )
-    .pipe(dest(path.build.img));
+   return gulp
+      .src([source_folder + "/iconsprite/*.svg"])
+      .pipe(
+         svgSprite({
+            mode: {
+               stack: {
+                  sprite: "../icons/icons.svg", // sprite file name
+                  example: true,
+               },
+            },
+         })
+      )
+      .pipe(dest(path.build.img));
 });
 
 function fontsStyle(params) {
-  let file_content = fs.readFileSync(source_folder + "/scss/fonts.scss");
-  if (file_content == "") {
-    fs.writeFile(source_folder + "/scss/fonts.scss", "", cb);
-    return fs.readdir(path.build.fonts, function (err, items) {
-      if (items) {
-        let c_fontname;
-        for (var i = 0; i < items.length; i++) {
-          let fontname = items[i].split(".");
-          fontname = fontname[0];
-          if (c_fontname != fontname) {
-            fs.appendFile(
-              source_folder + "/scss/fonts.scss",
-              '@include font("' +
-                fontname +
-                '", "' +
-                fontname +
-                '", "400", "normal");\r\n',
-              cb
-            );
-          }
-          c_fontname = fontname;
-        }
-      }
-    });
-  }
+   let file_content = fs.readFileSync(source_folder + "/scss/fonts.scss");
+   if (file_content == "") {
+      fs.writeFile(source_folder + "/scss/fonts.scss", "", cb);
+      return fs.readdir(path.build.fonts, function (err, items) {
+         if (items) {
+            let c_fontname;
+            for (var i = 0; i < items.length; i++) {
+               let fontname = items[i].split(".");
+               fontname = fontname[0];
+               if (c_fontname != fontname) {
+                  fs.appendFile(
+                     source_folder + "/scss/fonts.scss",
+                     '@include font("' +
+                     fontname +
+                     '", "' +
+                     fontname +
+                     '", "400", "normal");\r\n',
+                     cb
+                  );
+               }
+               c_fontname = fontname;
+            }
+         }
+      });
+   }
 }
 
-function cb() {}
+function cb() { }
 
 //! прослушка файлов "слежка за фвйлами"
 function watchfiles(params) {
-  gulp.watch([path.watch.html], html);
-  gulp.watch([path.watch.css], css);
-  gulp.watch([path.watch.js], js);
-  gulp.watch([path.watch.img], images);
+   gulp.watch([path.watch.html], html);
+   gulp.watch([path.watch.css], css);
+   gulp.watch([path.watch.js], js);
+   gulp.watch([path.watch.img], images);
 }
 
 //! Включение Процеса выполнения
