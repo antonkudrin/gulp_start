@@ -1,8 +1,23 @@
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- Отключает принудительную ссылку у номера телефона на iOS -->
-   <meta name="format-detection" content="telephone=no">
-   <link rel="stylesheet" href="./css/style.min.css">
-   <title>Gulp Start</title>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Отключает принудительную ссылку у номера телефона на iOS -->
+<meta name="format-detection" content="telephone=no">
+<script>
+   function testWebP(callback) {
+      var webP = new Image();
+      webP.onload = webP.onerror = function () {
+         callback(webP.height == 2);
+      };
+      webP.src =
+         "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA";
+   }
+   testWebP(function (support) {
+      if (support == true) {
+         document.querySelector("body").classList.add("webp");
+      } else {
+         document.querySelector("body").classList.add("no-webp");
+      }
+   });
+</script>
+<link rel="stylesheet" href="./css/style.min.css">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 27" width="32" height="27">
+	<defs>
+		<image width="32" height="27" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAbCAMAAAAqGX2oAAAAAXNSR0IB2cksfwAAAUpQTFRFVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuVsfuyaoRswAAAG50Uk5TACNddWIkCwMvuv+1HRRzJXCiWPfgtPm2pQY8zBEN0b8YAfOKr5nB50w1yA+UX6sJQv63W2YMy/rHj2yEMPUCrJaq76NUBM5QId4SnB9V/CgegOOSP0BkxWtL1fRREEOG20nN7OaF5WMH2fbpniD9SqJjAAABKUlEQVR4nIWSZ1vCMBCAT0HBQ8DVqqAIFRytC7XirLi3iAP33uv/f7WkFnKxebxPl7xv7pJ7AuARNbU+f11lVR8QcLAByxFqBAhHogBNzdRoaUUn2iKKqtgb7djRyfGYitWId3UDJBB7khWeSnBc601nAPrsrH/AFQaRhG4ADLEsHXSEYcJHRu2tMSfPjk/Y/WCSCCbrOuUuc9Mzs3NEMFjV+QWUhVXmi/klGV9mBVak5zHOhFW5kGfC2rpU2HCevrkl4Zr5O73tnZynkHHHu7vn0zz4fsEVDv4pAFD04odGVbCO/nL1mHyjk5Aw72xJ+IhgnhJ+JuDU+QXPL68Ivb65vSP19QJH7x8ehes9+S1yPvz8wjfXX9/E60EgVlTeNfz41L9K3yL8AUJTLstgGjMRAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<g id="TWITTER">
+		<use id="Icon" href="#img1" x="0" y="0" />
+	</g>
+</svg>

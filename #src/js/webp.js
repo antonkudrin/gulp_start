@@ -1,4 +1,4 @@
-//! ФУНКЦИЯ ОПРЕДЕЛЕНИЯ ПОДДЕРЖКИ WEBP
+// ФУНКЦИЯ ОПРЕДЕЛЕНИЯ ПОДДЕРЖКИ WEBP
 function testWebP(callback) {
    var webP = new Image();
    webP.onload = webP.onerror = function () {

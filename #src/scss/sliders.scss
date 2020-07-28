@@ -1,0 +1,49 @@
+// http://kenwheeler.github.io/slick/
+.slider {
+   width: 100%;
+   margin: 0px auto;
+}
+
+.slick-slide {
+   margin: 0px;
+}
+
+.slick-slide img {
+   width: 100%;
+}
+
+.slick-prev:before,
+.slick-next:before {
+   color: black;
+}
+
+.slick-slide {
+   transition: all ease-in-out 0.3s;
+   opacity: 0.2;
+}
+
+.slick-active {
+   opacity: 0.5;
+}
+
+.slick-current {
+   opacity: 1;
+}
+
+.slick-dots li button:before {
+   content: "";
+   border: 1px solid #666666;
+   border-radius: 50%;
+   width: 11px;
+   height: 11px;
+   transition: all 0.2s ease;
+}
+
+.slick-dots li button:hover:before {
+   background: #666666;
+}
+
+.slick-dots li.slick-active button:before {
+   background: #666666;
+}
+//==============================================

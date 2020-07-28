@@ -1,2 +1,8 @@
-@include font("FontAwesome", "FontAwesome", "400", "normal");
-@include font("Peace Sans Webfont", "Peace Sans Webfont", "400", "normal");
+// @include font("Peace Sans Webfont", "Peace Sans Webfont", "400", "normal");
+
+// ПОДКЛЮЧЕНИЕ ШРФТОВ
+@import url("https://fonts.googleapis.com/css?family=Lato:regular,italic,700,700italic,900");
+
+// ШРИФТ ПО УМОЛЧАНИЮ
+$fontfamily: "Lato", "Arial", "Helvetica", sans-serif;
+// ШРИФТ ПО УМОЛЧАНИЮ

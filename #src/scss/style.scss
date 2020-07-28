@@ -9,10 +9,38 @@
    }
 }
 
-@import "reboot";
 @import "fonts";
+@import "reboot";
 @import "media";
+@import "slick";
+@import "header";
+@import "sliders";
+@import "popup";
+@import "footer";
 
-body {
-   font-family: "Arial", "Helvetica", sans-serif;
+
+.wrapper {
+   overflow: hidden;
 }
+
+.title {
+   @media (min-width: 1900px) {
+      font-size: 2vh;
+   }
+}
+
+.text {
+   @media (min-width: 1900px) {
+      font-size: 2vh;
+   }
+}
+
+//==================================================
+
+//==================================================
+
+//==================================================
+
+//==================================================
+
+
