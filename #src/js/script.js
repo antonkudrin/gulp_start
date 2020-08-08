@@ -1,64 +1,33 @@
+@@include("fjs/webp.js");
+@@include("fjs/swiper-bundle.js");
+@@include("fjs/swiper.js");
 @@include("fjs/responsive.js");
-@@include("fjs/menuBurger.js");
-@@include("fjs/popup.js");
-@@include("fjs/slick.js");
-@@include("fjs/sliders.js");
 @@include("fjs/form.js");
+@@include("fjs/animate.js");
+@@include("fjs/images.js");
 
-$(document).ready(function (event) {
-   // Параллакс
-   $(window).scroll(function () {
-      var scrolTop = $(this).scrollTop();
-      var menuSmall = $(".header__body, .header__logo, header, .firstscreen");
-      if (scrolTop > 50) {
-         menuSmall.addClass('small')
-      } else {
-         menuSmall.removeClass('small')
-      }
+
+
+
+const burger = document.querySelector('._burger');
+const menuBurgerElems = document.querySelectorAll('._burger > span, body, .menu-header');
+const menuLink = document.querySelectorAll('.menu-header__link');
+burger.addEventListener('click', function () {
+   menuBurgerElems.forEach(function (entry) {
+      entry.classList.toggle('_active')
    });
-
-   // Добавить плавную прокрутку ко всем ссылкам
-   $("a").on('click', function (event) {
-      if (this.hash !== "") {
-         event.preventDefault();
-         var hash = this.hash;
-         $('html, body').animate({
-            scrollTop: $(hash).offset().top
-         }, 800, function () {
-            window.location.hash = hash;
-         });
-      }
+   menuLink.forEach(function (entry) {
+      entry.classList.toggle('_active')
    });
-
 });
-
-
-
-
-//var galleryImage = document.querySelectorAll('.gallery__image-wrapper');
-//galleryImage.forEach(function (params) {
-//   params.onmouseover = params.onmouseout = handler;
-//}); console.log(handler);
-//function handler(event) {
-
-//   function str(el) {
-//      if (!el) return "null"
-//      return el.className || el.tagName;
-//   }
-
-//   log.value += event.type + ':  ' +
-//      'target=' + str(event.target) +
-//      ',  relatedTarget=' + str(event.relatedTarget) + "\n";
-//   log.scrollTop = log.scrollHeight;
-
-//   if (event.type == 'mouseover') {
-//      event.target.style.background = 'pink'
-//   }
-//   if (event.type == 'mouseout') {
-//      event.target.style.background = ''
-//   }
-//}
-
-
-
+menuLink.forEach(function (event) {
+   event.addEventListener('click', function () {
+      menuBurgerElems.forEach(function (entry) {
+         entry.classList.remove('_active')
+      });
+      menuLink.forEach(function (entry) {
+         entry.classList.remove('_active')
+      });
+   });
+});
 

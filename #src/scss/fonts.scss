@@ -1,8 +1,19 @@
+// Авто-Подключение шрифтов
+@mixin font($font_name, $file_name, $weight, $style) {
+   @font-face {
+      font-family: $font_name;
+      font-display: swap;
+      src: url("../fonts/#{$file_name}.woff") format("woff"), url("../fonts/#{$file_name}.woff2") format("woff2");
+      font-weight: #{$weight};
+      font-style: #{$style};
+   }
+}
+
 // @include font("Peace Sans Webfont", "Peace Sans Webfont", "400", "normal");
 
 // ПОДКЛЮЧЕНИЕ ШРФТОВ
-@import url("https://fonts.googleapis.com/css?family=Lato:regular,italic,700,700italic,900");
+@import url("https://fonts.googleapis.com/css?family=PT+Serif:regular");
 
 // ШРИФТ ПО УМОЛЧАНИЮ
-$fontfamily: "Lato", "Arial", "Helvetica", sans-serif;
+$fontfamily: "PT Serif", sans-serif;
 // ШРИФТ ПО УМОЛЧАНИЮ

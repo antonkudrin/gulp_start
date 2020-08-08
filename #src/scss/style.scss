@@ -1,46 +1,30 @@
-//! Авто-Подключение шрифтов
-@mixin font($font_name, $file_name, $weight, $style) {
-   @font-face {
-      font-family: $font_name;
-      font-display: swap;
-      src: url("../fonts/#{$file_name}.woff") format("woff"), url("../fonts/#{$file_name}.woff2") format("woff2");
-      font-weight: #{$weight};
-      font-style: #{$style};
-   }
-}
+//=====COLOR================================================
+$main_color: #1a54e7;
+//=====COLOR================================================
 
 @import "fonts";
 @import "reboot";
 @import "media";
-@import "slick";
 @import "header";
-@import "sliders";
-@import "popup";
+//@import "swiper-bundle";
+//@import "swiper";
 @import "footer";
-
 
 .wrapper {
    overflow: hidden;
 }
 
-.title {
-   @media (min-width: 1900px) {
-      font-size: 2vh;
-   }
-}
+//=====CONTENT=============================================
+//====SLIDERS==============================================
 
-.text {
-   @media (min-width: 1900px) {
-      font-size: 2vh;
-   }
-}
+//====SLIDERS==============================================
 
-//==================================================
+//========================================================
 
-//==================================================
+//========================================================
+
+//========================================================
+
+//=====CONTENT=============================================
 
 //==================================================
-
-//==================================================
-
-

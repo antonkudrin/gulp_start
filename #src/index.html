@@ -1,24 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
-   @@include("_head.html")
-   <title>Gulp Start</title>
+   @@include('_head.html',{})
+   <title>Клуб путешествия</title>
 </head>
-
 <body>
-   <main class="wrapper">
-      @@include("_header.html")
+   <div class="wrapper">
+      @@include("_header.html",{})
+      <main class="main">
 
-
-
-      @@include("_sliders.html")
-
-
-      @@include("_footer.html")
-      @@include("_popup.html")
-   </main>
-   @@include("_script.html")
+      </main>
+      @@include("_footer.html",{})
+   </div>
+   @@include("_script.html",{})
 </body>
-
 </html>

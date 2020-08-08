@@ -1,10 +1,10 @@
 //? Переменные
 $minwidth: 420;
-$mw: 1100;
+$mw: 1200;
 $md1: $mw;
-$md2: 992.98;
-$md3: 767.98;
-$md4: 624.98;
+$md2: 993;
+$md3: 768;
+$md4: 625;
 //? Переменные
 
 .container {
@@ -12,12 +12,12 @@ $md4: 624.98;
    margin: 0 auto;
    width: 100%;
 
-   @media (max-width: $md1 + px) {
-      max-width: 970px;
+   @media (max-width: $md1+px) {
+      padding: 0px 10px;
    }
 
    @media (max-width: $md2+px) {
-      max-width: 750px;
+      //max-width: 750px;
    }
 
    @media (max-width: $md3+px) {
